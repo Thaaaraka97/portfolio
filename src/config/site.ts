@@ -8,5 +8,5 @@ export const site = {
   github: 'https://github.com/Thaaaraka97',
   linkedin: 'https://www.linkedin.com/in/tharaka-malwaththa',
   blog: 'https://medium.com/@_tech_amigo_',
-  resumePath: '/resume/tharaka-malwaththa-resume.pdf',
+  resumePath: '/resume/tharaka-pathirannehelage-resume.pdf',
 };

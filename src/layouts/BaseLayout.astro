@@ -51,9 +51,10 @@ const nav = [
     <footer class="site-footer">
       <p>© {new Date().getFullYear()} {site.name}. Built with Astro and deployed as a static site.</p>
       <div class="footer-links">
-        <a href={site.github}>GitHub</a>
-        <a href={site.linkedin}>LinkedIn</a>
-        <a href={`mailto:${site.email}`}>Email</a>
+        <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={`mailto:${site.email}`} target="_blank" rel="noopener noreferrer">Email</a>
+        <a href={site.blog} target="_blank" rel="noopener noreferrer">Medium</a>
       </div>
     </footer>
   </body>
