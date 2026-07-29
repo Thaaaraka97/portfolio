@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+<BaseLayout title={`Résumé | ${site.name}`}>
+  <section class="page-header container narrow">
+    <p class="eyebrow">Résumé</p>
+    <h1>Experience and technical capability</h1>
+    <p>Replace the placeholder PDF in <code>public/resume</code>, then keep this page as the permanent public résumé link.</p>
+    <div class="button-row">
+      <a class="button primary" href={site.resumePath}>Download PDF résumé</a>
+      <a class="button secondary" href={site.linkedin}>LinkedIn profile</a>
+    </div>
+  </section>
+  <section class="section container resume-summary">
+    <article><h2>Infrastructure</h2><p>Windows Server, Linux, VMware, networking, backup and operational troubleshooting.</p></article>
+    <article><h2>Microsoft cloud</h2><p>Azure, Entra ID, Microsoft 365, Intune, Conditional Access and identity management.</p></article>
+    <article><h2>Automation</h2><p>PowerShell, Terraform, Git and repeatable infrastructure documentation.</p></article>
+  </section>
+</BaseLayout>

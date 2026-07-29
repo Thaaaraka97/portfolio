@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+<BaseLayout title={`Contact | ${site.name}`}>
+  <section class="page-header container narrow">
+    <p class="eyebrow">Contact</p>
+    <h1>Let’s discuss infrastructure work.</h1>
+    <p>The lowest-maintenance contact system is direct email. It has no form backend, spam service, database or privacy burden.</p>
+    <div class="contact-panel">
+      <a class="button primary" href={`mailto:${site.email}?subject=Portfolio inquiry`}>Email me</a>
+      <a class="button secondary" href={site.linkedin}>LinkedIn</a>
+      <a class="button secondary" href={site.github}>GitHub</a>
+      <a class="button secondary" href={site.blog}>Blog</a>
+    </div>
+    <p class="muted">Based in {site.location}. Open to relevant employment and project conversations.</p>
+  </section>
+</BaseLayout>

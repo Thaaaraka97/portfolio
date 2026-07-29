@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+<BaseLayout title={`About | ${site.name}`}>
+  <section class="page-header container narrow">
+    <p class="eyebrow">About</p>
+    <h1>I build infrastructure and document the reasoning behind it.</h1>
+    <p>I have hands-on experience across technical support, systems administration, networking, virtualization and cloud fundamentals. My current focus is building deeper capability in Microsoft cloud infrastructure, identity, endpoint management and infrastructure automation.</p>
+  </section>
+  <section class="section container two-column">
+    <div>
+      <h2>Current direction</h2>
+      <p>I am targeting cloud infrastructure, systems administration and technical support roles where reliable operations, security and troubleshooting matter.</p>
+    </div>
+    <div>
+      <h2>Working principles</h2>
+      <ul class="plain-list">
+        <li>Understand the business requirement before choosing technology.</li>
+        <li>Automate repeatable work where automation actually reduces risk.</li>
+        <li>Document failures and troubleshooting—not only successful screenshots.</li>
+        <li>Prefer simple systems that can be maintained reliably.</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

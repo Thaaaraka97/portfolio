@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../config/site';
+
+const projects = (await getCollection('projects'))
+  .filter((project) => project.data.featured)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout>
+  <section class="hero container">
+    <p class="eyebrow">Cloud · Systems · Networking · Automation</p>
+    <h1>{site.role}</h1>
+    <p class="hero-copy">{site.tagline}</p>
+    <div class="button-row">
+      <a class="button primary" href="/projects">View projects</a>
+      <a class="button secondary" href={site.resumePath}>Download résumé</a>
+      <a class="button ghost" href="/contact">Contact me</a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Evidence, not claims</p>
+        <h2>Featured projects</h2>
+      </div>
+      <a class="text-link" href="/projects">See all projects →</a>
+    </div>
+    <div class="card-grid">
+      {projects.map((project) => (
+        <ProjectCard
+          slug={project.id}
+          title={project.data.title}
+          summary={project.data.summary}
+          status={project.data.status}
+          technologies={project.data.technologies}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section container credibility">
+    <div>
+      <p class="eyebrow">What I demonstrate</p>
+      <h2>Practical infrastructure thinking</h2>
+    </div>
+    <div class="principles">
+      <article><h3>Architecture</h3><p>Clear diagrams, requirements, assumptions and trade-offs.</p></article>
+      <article><h3>Implementation</h3><p>Repeatable steps, configuration evidence and source-controlled code.</p></article>
+      <article><h3>Troubleshooting</h3><p>Failures, root causes, fixes and lessons—not a fake perfect journey.</p></article>
+    </div>
+  </section>
+</BaseLayout>

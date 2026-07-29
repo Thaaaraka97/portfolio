@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+<BaseLayout title="Projects | Tharaka Malwaththa" description="Infrastructure, cloud, systems and networking project case studies.">
+  <section class="page-header container">
+    <p class="eyebrow">Project portfolio</p>
+    <h1>Projects</h1>
+    <p>Case studies showing the problem, architecture, implementation, troubleshooting and final outcome.</p>
+  </section>
+  <section class="section container">
+    <div class="card-grid">
+      {projects.map((project) => (
+        <ProjectCard
+          slug={project.id}
+          title={project.data.title}
+          summary={project.data.summary}
+          status={project.data.status}
+          technologies={project.data.technologies}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
