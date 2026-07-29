@@ -26,7 +26,7 @@ A growing company needs centralized identity, secure access policies, and consis
 
 ## Architecture
 
-![Hybrid Identity and Endpoint Management Architecture](../../../public/images/hybrid-identity-endpoint-lab.png)
+![Hybrid Identity and Endpoint Management Architecture](../../../public/images/projects/hybrid-identity-endpoint-lab.png)
 
 The lab combines Microsoft Entra ID, Conditional Access, Intune, Autopilot, and an Azure-hosted Active Directory environment. PowerShell, Microsoft Graph, and Bicep are used to automate deployment and configuration.
 

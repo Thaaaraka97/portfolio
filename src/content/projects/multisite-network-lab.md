@@ -20,7 +20,7 @@ The lab was built to test VLAN routing, DHCP, OSPF, EIGRP, and route redistribut
 
 ## Design
 
-![Multi-Site Network Topology](../../../public/images/multi-site-network-topology.png)
+![Multi-Site Network Topology](../../../public/images/projects/multi-site-network-topology.png)
 
 The topology contains:
 
