@@ -20,7 +20,7 @@ This lab was designed to simulate a small business environment using Active Dire
 
 ## Architecture
 
-![Active Directory Lab Architecture](../../../public/images/projects/image.png)
+![Active Directory Lab Architecture](/public/images/projects/image.png)
 
 The environment includes:
 
