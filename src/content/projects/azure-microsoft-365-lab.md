@@ -14,170 +14,55 @@ repository: https://github.com/Thaaaraka97/mini-enterprise-lab
 ---
 ## Business problem
 
-A growing company needs centralized identity, secure access controls, and consistent Windows endpoint management without maintaining a large on-premises management platform.
-
-This ongoing project combines Microsoft Entra ID, Conditional Access, Intune, Windows Autopilot, and an Azure-hosted Active Directory environment. The goal is to make the design reproducible through PowerShell, Microsoft Graph, Bicep, and clear documentation.
+A growing company needs centralized identity, secure access policies, and consistent Windows endpoint management without relying on a large on-premises platform.
 
 ## Requirements
 
-- Centralize users and groups.
-- Enforce multifactor authentication and risk-based access controls.
-- Enrol and configure Windows endpoints.
-- Separate administrative privileges from standard user access.
-- Document the design so another administrator can reproduce it.
+- Centralize users and groups
+- Enforce MFA and Conditional Access
+- Enrol and configure Windows devices
+- Separate standard and administrative accounts
+- Make the environment reproducible
 
 ## Architecture
 
-![Hybrid Identity and Endpoint Management Architecture](../../../public/images/hybrid-identity-endpoint-lab.png)
+![Hybrid Identity and Endpoint Management Architecture](/images/projects/hybrid-identity-endpoint-lab.png)
 
-The design is divided into three layers:
-
-- **Cloud identity and endpoint management:** Entra ID, Conditional Access, MFA, Intune, Autopilot, users, groups, and role assignments.
-- **Azure-hosted AD DS:** Windows Server, DNS, Group Policy, delegated administration, and a domain-joined client.
-- **Automation and documentation:** PowerShell, Microsoft Graph, Azure CLI, Bicep, setup guides, diagrams, and validation evidence.
-
-The cloud and AD DS environments remain separate during the current build. Entra Connect and hybrid synchronization are planned only after both environments are stable.
+The lab combines Microsoft Entra ID, Conditional Access, Intune, Autopilot, and an Azure-hosted Active Directory environment. PowerShell, Microsoft Graph, and Bicep are used to automate deployment and configuration.
 
 ## Implementation
 
-### Phase 1 — Project foundation
+The project is being built in phases:
 
-The repository is organized by environment so scripts, diagrams, setup guides, and design decisions are easy to locate.
-
-```text
-entra-intune/
-adds/
-hybrid/
-public/images/projects/
-```
-
-Each feature is configured manually first, validated, and then automated. This prevents the project from becoming a collection of scripts that were never tested against a working design.
-
-### Phase 2 — Entra identity baseline
-
-Test users are being created across HR, IT, and Finance. Security groups represent departmental access, while administrative roles are assigned only to dedicated privileged accounts.
-
-Microsoft Graph PowerShell is used for:
-
-- User creation
-- Group creation and membership
-- Role assignment
-- Existing-object checks
-
-The scripts are being designed to be idempotent so rerunning them does not create duplicates.
-
-### Phase 3 — Conditional Access and MFA
-
-The initial policy set includes:
-
-1. Blocking legacy authentication.
-2. Requiring MFA outside trusted locations.
-
-Policies start in **Report-only** mode. Sign-in logs are reviewed before enforcement to avoid accidental lockout.
-
-Risk-based controls are part of the target design, but they will only be marked complete after licensing and test evidence are confirmed.
-
-### Phase 4 — Intune and Autopilot
-
-The endpoint phase includes:
-
-- Windows enrolment
-- Compliance checks for BitLocker, Firewall, and OS version
-- Configuration profiles for lock-screen timeout and USB restrictions
-- Required application deployment
-- Windows Autopilot profile assignment
-
-A full Autopilot reset may remain outside the immediate test scope if it risks disrupting the primary physical device. The expected deployment flow will still be documented.
-
-### Phase 5 — Azure-hosted AD DS
-
-The AD DS environment is planned through Bicep and PowerShell with:
-
-- A Windows Server VM
-- Static private addressing
-- Restricted RDP access
-- AD DS and DNS
-- Departmental OUs
-- Test users and groups
-- Delegated password-reset rights
-- Group Policy
-- A domain-joined Windows client
+1. Create test users, groups, and limited admin roles in Entra ID.
+2. Deploy Conditional Access policies in Report-only mode.
+3. Enrol a Windows device into Intune and apply compliance and configuration policies.
+4. Configure Autopilot for standardized deployment.
+5. Build an Azure-hosted domain controller with AD DS, DNS, OUs, users, groups, and Group Policy.
+6. Document and automate each phase.
 
 ## Security decisions
 
-### Administrative account separation
+Standard user accounts are separated from administrative accounts. Roles follow least privilege, and emergency access accounts are excluded from policies that could cause tenant lockout.
 
-Standard user accounts are not used for privileged administration. Dedicated admin identities reduce exposure during normal browsing, email use, and daily work.
-
-### Least privilege
-
-Roles are assigned by task. Global Reader and Helpdesk Administrator are used where possible instead of broad tenant-wide privileges.
-
-### Emergency access accounts
-
-The design includes cloud-only emergency access accounts for tenant recovery. These accounts are protected, monitored, and not used for daily administration.
-
-### Conditional Access exclusions
-
-Emergency access accounts are excluded from policies that could cause a tenant-wide lockout. Temporary exclusions may also be used for testing, but only for specific accounts and only for as long as required.
+Conditional Access policies are tested in Report-only mode before enforcement.
 
 ## Problems and troubleshooting
 
-### Microsoft 365 admin sign-in failure
+A Microsoft 365 admin login failed because a personal Microsoft account was used instead of the tenant's `onmicrosoft.com` administrator account.
 
-**Symptom:** The Microsoft 365 admin portal rejected a personal Outlook or Hotmail account.
+Licensing and feature availability are also being verified before risk-based access and Intune capabilities are marked complete.
 
-**Root cause:** The portal requires a work or school account from the tenant.
-
-**Fix:** The tenant-specific `onmicrosoft.com` administrator account was used instead.
-
-### Licensing and feature availability
-
-**Symptom:** Entra ID P2 or Intune features may not appear as expected.
-
-**Diagnostic path:**
-
-- Check the Microsoft 365 subscription state.
-- Verify assigned licences.
-- Confirm access to the Entra and Intune portals.
-- Confirm that the developer subscription has not expired.
-
-**Current limitation:** Risk-based Conditional Access and some Intune features will not be claimed as complete until licensing is verified.
-
-### Automation reliability
-
-A script that works once but creates duplicates on the second run is not reliable automation. Each script therefore checks for existing users, groups, policies, and assignments before creating new objects.
+Automation scripts are being designed to check for existing objects before creating users, groups, or policies.
 
 ## Outcome
 
 This project is still in progress.
 
-The architecture, security model, build phases, repository structure, and automation approach are defined. The intended end state includes centralized identities, controlled admin roles, Conditional Access, managed Windows endpoints, Autopilot, Azure-hosted AD DS, Group Policy, and repeatable deployment scripts.
+The architecture, security model, repository structure, and implementation plan are defined. The target outcome is a reproducible cloud and AD DS lab with centralized identity, secure access, managed endpoints, and documented validation.
 
-Completion will be supported by evidence such as:
-
-- Microsoft Graph output for users and groups
-- Entra role assignments
-- Conditional Access results in sign-in logs
-- Intune compliance and policy status
-- Application deployment results
-- Domain-join validation
-- `gpresult` output
-- Delegated administration tests
-- A successful rebuild from the repository
-
-Hybrid synchronization, high availability, SIEM integration, certificate services, and disaster recovery remain outside the current scope.
+Hybrid synchronization, high availability, monitoring, and disaster recovery remain outside the current scope.
 
 ## Lessons learned
 
-For production, I would:
-
-- Use a routable AD DNS subdomain instead of `corp.local`.
-- Deploy at least two domain controllers.
-- Use Privileged Identity Management.
-- Store secrets in a managed vault.
-- Use deployment rings for Intune and Conditional Access.
-- Add centralized monitoring and alerting.
-- Test emergency access accounts on a schedule.
-- Add rollback and formal change control before enforcing policies.
-- Introduce Entra Connect only after both environments are stable.
+For production, I would use multiple domain controllers, Privileged Identity Management, secure secret storage, phased policy deployment, centralized monitoring, and a routable AD domain.
