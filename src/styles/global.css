@@ -66,3 +66,15 @@ h3 { line-height: 1.25; }
   .credibility, .two-column { grid-template-columns: 1fr; gap: 1rem; }
   .section-heading, .site-footer { align-items: flex-start; flex-direction: column; }
 }
+.project-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2rem 0;
+  padding: 2rem;
+  box-sizing: border-box;
+  object-fit: contain;
+  background: #f5f7fa;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
