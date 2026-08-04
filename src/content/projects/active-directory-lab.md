@@ -20,7 +20,7 @@ This lab was designed to simulate a small business environment using Active Dire
 
 ## Architecture
 
-![Active Directory Lab Architecture](/public/images/projects/AD-lab-setup-network-diagram.png)
+![Active Directory Lab Architecture](/portfolio/images/projects/AD-lab-setup-network-diagram.png)
 
 The environment includes:
 

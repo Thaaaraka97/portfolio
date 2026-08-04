@@ -23,7 +23,7 @@ const { Content } = await render(project);
         {project.data.technologies.map((technology: string) => <li>{technology}</li>)}
       </ul>
       <div class="button-row">
-        {project.data.repository && <a class="button secondary" href={project.data.repository}>GitHub repository</a>}
+        {project.data.repository && <a class="button secondary" href={project.data.repository} target="_blank" rel="noopener noreferrer">GitHub repository</a>}
         {project.data.demo && <a class="button secondary" href={project.data.demo}>Live demo</a>}
       </div>
     </header>
