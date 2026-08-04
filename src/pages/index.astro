@@ -16,9 +16,9 @@ const projects = (await getCollection('projects'))
     <h1>{site.role}</h1>
     <p class="hero-copy">{site.tagline}</p>
     <div class="button-row">
-      <a class="button primary" href="${base}projects">View projects</a>
+      <a class="button primary" href=`${base}/projects`>View projects</a>
       <a class="button secondary" href={site.resumePath} download>Download résumé</a>
-      <a class="button ghost" href="${base}contact">Contact me</a>
+      <a class="button ghost" href=`${base}/contact`>Contact me</a>
     </div>
   </section>
 
@@ -28,7 +28,7 @@ const projects = (await getCollection('projects'))
         <p class="eyebrow">Evidence, not claims</p>
         <h2>Featured projects</h2>
       </div>
-      <a class="text-link" href="${base}projects">See all projects →</a>
+      <a class="text-link" href=`${base}/projects`>See all projects →</a>
     </div>
     <div class="card-grid">
       {projects.map((project) => (
