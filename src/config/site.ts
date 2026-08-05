@@ -9,4 +9,5 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/tharaka-malwaththa',
   blog: 'https://medium.com/@_tech_amigo_',
   resumePath: '/portfolio/resume/tharaka-pathirannehelage-resume.pdf',
+  credly: 'https://www.credly.com/users/tharaka-malwaththa',
 };

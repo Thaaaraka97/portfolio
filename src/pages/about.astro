@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title={`About | ${site.name}`}>
   <section class="page-header container narrow">
@@ -8,6 +9,55 @@ import { site } from '../config/site';
     <h1>I build infrastructure and document the reasoning behind it.</h1>
     <p>I have hands-on experience across technical support, systems administration, networking, virtualization and cloud fundamentals. My current focus is building deeper capability in Microsoft cloud infrastructure, identity, endpoint management and infrastructure automation.</p>
   </section>
+  <div class="container narrow">
+    <section class="certifications">
+      <div class="section-heading">
+        <p class="eyebrow">Credentials</p>
+        <h2>Certifications</h2>
+        <p>
+          Verified professional certifications across Microsoft, Cisco, and CompTIA.
+        </p>
+      </div>
+
+      <div class="certification-grid">
+        <article class="certification-card">
+          <span class="certification-provider">Microsoft</span>
+          <h3>AZ-900</h3>
+          <p>Azure Fundamentals.</p>
+          <h3>SC-900</h3>
+          <p>Security, Compliance, and Identity Fundamentals.</p>
+        </article>
+
+        <article class="certification-card">
+          <span class="certification-provider">Cisco</span>
+          <h3>CCNA</h3>
+          <p>Cisco Certified Network Associate.</p>
+        </article>
+
+        <article class="certification-card">
+          <span class="certification-provider">CompTIA</span>
+          <h3>A+</h3>
+          <p>220-1201 - CompTIA A+ Core 1 Certification Exam, 220-1202 - CompTIA A+ Core 2 Certification Exam.</p>
+          <h3>Server+</h3>
+          <p>CompTIA Server+ performance-based exam (SK0-005).</p>
+        </article>
+      </div>
+
+      <a
+        class="button primary"
+        href={site.credly}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View verified credentials on Credly
+      </a>
+    </section>
+  </div>
+
+
+
+
+
   <section class="section container two-column">
     <div>
       <h2>Current direction</h2>
