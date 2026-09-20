@@ -3,7 +3,7 @@ title: Azure and Microsoft 365 Enterprise Lab
 summary: A small-enterprise identity and endpoint environment built around Entra ID, Intune, Conditional Access and device lifecycle management.
 date: 2026-07-01
 featured: true
-status: In progress
+status: Completed
 technologies:
   - Microsoft Azure
   - Entra ID
